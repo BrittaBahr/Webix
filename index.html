@@ -48,7 +48,9 @@
                 normalkraft.push(element[3]);
                 reibkraft.push(element[4]);
             });
-            time.pop(time[0]);
+            time.reverse();
+            time.pop();
+            time.reverse();
             console.log(time)
 
             var chart = new Highcharts.Chart({
@@ -67,6 +69,7 @@
             },
 
             series: [{
+                name: "Normalkraft",
                 data: normalkraft
             }]
         });
