@@ -2,15 +2,14 @@
   "name": "webix",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.html",
   "dependencies": {
     "webix": "^8.1.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "index.js",
-    "server": "server.js"
+    "start": "index.js"
   },
   "author": "Britta Bahr",
   "license": "ISC"
