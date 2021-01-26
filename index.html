@@ -26,10 +26,9 @@
         Highcharts.getJSON(
             'data.json',
             function (data) {
-                var newData = JSON.parse(data);
                 var normalforce = new Array();
                 data.forEach(element => {
-                    normalforce.push(element.Normalkraft);
+                    normalforce.push(parseFloat(element.Normalkraft));
                 });
                 console.log(normalforce);
                 Highcharts.chart('container', {
