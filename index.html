@@ -26,6 +26,10 @@
         Highcharts.getJSON(
             'data.json',
             function (data) {
+                var normalforce = new Array();
+                data.forEach(element => {
+                    normalforce.push(element.Normalkraft);
+                });
                 console.log(data[3].Normalkraft)
                 Highcharts.chart('container', {
                     chart: {
@@ -80,7 +84,7 @@
                     series: [{
                         type: 'area',
                         name: 'Normal force',
-                        data: data[3]
+                        data: normalforce
                     }]
                 });
             }
