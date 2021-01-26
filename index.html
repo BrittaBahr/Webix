@@ -48,24 +48,16 @@
             });
 
             var myGraph = new Chart(lineCtx, {
-                type: 'timeseries',
+                type: 'line',
                 data: {
                     labels: time,
                     datasets: [{
-                        label: 'Normalkraft', // Name the series
-                        data: normalkraft, // Specify the data values array
+                        label: 'Normalkraft', 
+                        data: normalkraft, 
                         fill: false,
-                        borderColor: '#2196f3', // Add custom color border (Line)
-                        backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
-                        borderWidth: 0.1 // Specify bar border width
-                    },
-                    {
-                        label: 'reibkraft', // Name the series
-                        data: reibkraft, // Specify the data values array
-                        fill: false,
-                        borderColor: '#2196f3', // Add custom color border (Line)
-                        backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
-                        borderWidth: 0.1 // Specify bar border width
+                        borderColor: '#2196f3', 
+                        backgroundColor: '#2196f3',
+                        borderWidth: 0.1 
                     }
                 ]
                 },
