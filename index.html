@@ -48,9 +48,13 @@
                 normalkraft.push(element[3]);
                 reibkraft.push(element[4]);
             });
+            time.pop(time[0]);
             console.log(time)
 
             var chart = new Highcharts.Chart({
+                title: {
+					text: 'Highchart Example Time Series Data'
+				},
             chart: {
                 renderTo: 'container',
                 marginBottom: 80
