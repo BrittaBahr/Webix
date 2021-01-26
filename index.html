@@ -28,11 +28,9 @@
             result.reverse();
             let time = new Array();
             let normalkraft = new Array();
-            let reibkraft = new Array();
             result.forEach(element => {
-                time.push(element[1]);
-                normalkraft.push(element[3]);
-                reibkraft.push(element[4]);
+                time.push(parseFloat(element[1]));
+                normalkraft.push(parseFloat(element[3]));
 			});
 			console.log(time)
 
