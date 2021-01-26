@@ -12,9 +12,9 @@
 </head>
 
 <body>
-    <h1 class="title is-1">
-        Chart.js 1.x Example
-    </h1>
+    <h3 class="title is-1">
+        Chart.js Time Series Data Example
+    </h3>
     <canvas id="myGraph" padding=15px;></canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -55,10 +55,15 @@
                         label: 'Normalkraft', // Name the series
                         data: normalkraft, // Specify the data values array
                         fill: false,
-                        borderColor: '#2196f3', // Add custom color border (Line)
-                        backgroundColor: '#2196f3', // Add custom color background (Points and Fill)
                         borderWidth: 1 // Specify bar border width
-                    }]
+                    },
+                    {
+                        label: 'reibkraft', // Name the series
+                        data: reibkraft, // Specify the data values array
+                        fill: false,
+                        borderWidth: 1 // Specify bar border width
+                    }
+                ]
                 },
                 options: {
                     responsive: true, // Instruct chart js to respond nicely.
