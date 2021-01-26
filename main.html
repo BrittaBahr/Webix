@@ -11,42 +11,54 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
-    <div id="testwebix"></div>
+    <div id="testA"></div>
     <script>
-        var multiple_dataset = [
-    { sales:"20", sales2:"35", sales3:"55", year:"02" },
-    { sales:"40", sales2:"24", sales3:"40", year:"03" },
-    { sales:"44", sales2:"20", sales3:"27", year:"04" },
-    { sales:"23", sales2:"50", sales3:"43", year:"05" },];
-
-    webix.ui({
-    container:"testwebix",
-    view:"chart",
-    type:"bar",
-    //bar chart config
-    series:[
-        {   //setting for each bar
-            value:"#sales2#",
-            color:"#69ba00",
-            tooltip:{
-                template:"#sales2#"
-            }
-        },
-        {   //setting for a line chart
-            type:"line",
-            value:"#sales3#",
-            color:"#36abee",
-            item:{
-                borderColor: "#b7286c",
-                color: "#de619c",
-                type: "s"
-            },
-            line:{
-                color:"#de619c",
-                width:2
-            }
-    }]
-})
+		webix.ready(function(){
+			webix.ui({
+				container:"testA",
+				view:"datatable",
+				subview:{
+					borderless:true,
+					view:"datatable",
+					headerRowHeight:28,
+					columns:[
+						{ id:"Outlet", sort:"string", fillspace:true },
+						{ id:"January" },
+						{ id:"February" },
+						{ id:"March" }
+					],
+					scrollX:false,
+					autoheight:true
+				},
+				on:{
+					onSubViewCreate:function(view, item){
+						view.parse(item.outlets);
+					}
+				},
+				columns:[
+					{ id:"title",	header:"Title", sort:"string",
+						template:"{common.subrow()} #title#", width:220 },
+					{ id:"year",	header:"Year", 		width:100, sort:"int"},
+					{ id:"votes",	header:"Votes", 	width:100,	sort:"int"}
+				],
+				autoheight:true,
+				autowidth:true,
+				data:[
+					{ id:1, title:"The Shawshank Redemption", year:1994, votes:678790, outlets:[
+						{ Outlet:"North", January:100, February:230, March:180 },
+						{ Outlet:"West", January:70, February:120, March:160 },
+					]},
+					{ id:2, title:"The Godfather", year:1972, votes:511495, outlets:[
+						{ Outlet:"North", January:453, February:322, March:732 },
+						{ Outlet:"West", January:22, February:556, March:123 },
+					]},
+					{ id:3, title:"The Godfather: Part II", year:1974, votes:319352, outlets:[
+						{ Outlet:"North", January:232, February:489, March:290 },
+						{ Outlet:"West", January:92, February:83, March:290 },
+					]}
+				]
+			});
+		});			
     </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
