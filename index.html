@@ -40,6 +40,9 @@
 
 
         asyncCsv2Array("timeSeriesData.csv", ",", function (result) {
+            result.reverse();
+            result.pop();
+            result.reverse();
             let time = new Array();
             let normalkraft = new Array();
             let reibkraft = new Array();
@@ -48,10 +51,6 @@
                 normalkraft.push(element[3]);
                 reibkraft.push(element[4]);
             });
-            time.reverse();
-            time.pop();
-            time.reverse();
-            console.log(time)
 
             var chart = new Highcharts.Chart({
                 title: {
