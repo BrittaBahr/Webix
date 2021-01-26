@@ -2,82 +2,90 @@
 <html lang="en">
 
 <head>
-    <title>Chart.js Example</title>
-    <!-- Required meta tags -->
+    <title>Highchart example</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://code.angularjs.org/1.2.21/angular.js"></script>
 </head>
 
 <body>
-    <h3 class="title is-1">
-        Chart.js: Time Series Data Example
-    </h3>
-    <canvas id="myGraph" padding=15px;></canvas>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+    </figure>
     <script>
-        var lineCtx = document.getElementById("myGraph").getContext("2d");
-        function readData(fileName, separator, callback) {
-            $.get(fileName, function (fileContent) {
-                var result = [];
-                var textArray = fileContent.split(/(\r\n|\n|\r)/gm);
-                for (var i = 0; i < textArray.length; i++) {
-                    if (textArray[i].length > 1) {
-                        var elementArray = textArray[i].split(separator);
-                        elementArray.splice(elementArray.length - 1, 1);
-                        result.push(elementArray);
-                    }
-                }
-                callback(result);
-            });
-        }
-        readData("timeSeriesData.csv", ",", function (result) {
-            result.reverse();
-            result.pop();
-            result.reverse();
-            let time = new Array();
-            let normalkraft = new Array();
-            let reibkraft = new Array();
-            result.forEach(element => {
-                time.push(element[1]);
-                normalkraft.push(element[3]);
-                reibkraft.push(element[4]);
-            });
+        Highcharts.getJSON(
+            'data.json',
+            function (data) {
+                console.log(data)
+                Highcharts.chart('container', {
+                    chart: {
+                        zoomType: 'x'
+                    },
+                    title: {
+                        text: 'Time Series Data Example'
+                    },
+                    xAxis: {
+                        type: 'datetime',
+                        min: 10,
+                        max: 20
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Values'
+                        },
+                       tickInterval: 0.01,
+                       min: 0,
+                        max: 1
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        area: {
+                            fillColor: {
+                                linearGradient: {
+                                    x1: 0,
+                                    y1: 0,
+                                    x2: 0,
+                                    y2: 1
+                                },
+                                stops: [
+                                    [0, Highcharts.getOptions().colors[0]],
+                                    [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                                ]
+                            },
+                            marker: {
+                                radius: 2
+                            },
+                            lineWidth: 1,
+                            states: {
+                                hover: {
+                                    lineWidth: 1
+                                }
+                            },
+                            threshold: null
+                        }
+                    },
 
-            var myGraph = new Chart(lineCtx, {
-                type: 'line',
-                data: {
-                    labels: [10.4, 10.5, 10.6, 10.7, 10.8, 10.9, 11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6],
-                    datasets: [{
-                        label: 'Normal force', 
-                        data: normalkraft, 
-                        fill: false,
-                        borderColor: '#2196f3', 
-                        backgroundColor: '#2196f3',
-                        borderWidth: 0.1 
-                    }
-                ]
-                },
-                options: {
-                    responsive: true, // Instruct chart js to respond nicely.
-                    maintainAspectRatio: false, // Add to prevent default behaviour of full-width/height 
-                }
-            });
-        })
-
+                    series: [{
+                        type: 'area',
+                        name: 'Normalkraft',
+                        data: data
+                    }]
+                });
+            }
+        );
     </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
