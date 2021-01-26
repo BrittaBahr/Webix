@@ -32,20 +32,24 @@
                     elementArray.splice(elementArray.length - 1, 1);
                     // Array der Zeile dem Ergebnis hinzufügen
                     result.push(elementArray);
-                } // Ende if
-            } // Ende for
+                }
+            }
             callback(result);
-        }); // Ende von $.get Aufruf
-    } // Ende function asyncCsv2Array
+        }); 
+    } 
 
-    // Beispielaufruf    
+    let time = new Array();
+    let normalkraft = new Array();
+    let reibkraft = new Array();
     asyncCsv2Array("timeSeriesData.csv", ",", function (result) {
+        for(var i = 1; i <= result.length; i++){
+            time.push(result[i][1]);
+            normalkraft.push(result[i][3]);
+            reibkraft.push(result[i][4]);
+        }
         console.log(result);
-        // Ausgabe von "Dracula"
-        console.log(result[0][0]);
-        // Ausgabe von "51.23424"
-        console.log(result[0][1]);
     });
+    console.log(time);
 
 
 
