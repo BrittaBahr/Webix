@@ -43,12 +43,11 @@
     let reibkraft = new Array();
     asyncCsv2Array("timeSeriesData.csv", ",", function (result) {
         console.log(result);
-        console.log(result[1][1])
-        for(var i = 1; i <= result.length; i++){
-            time.push(result[i][1]);
-            normalkraft.push(result[i][3]);
-            reibkraft.push(result[i][4]);
-        }
+        result.forEach(element => {
+            time.push(element[1]);
+            normalkraft.push(element[3]);
+            reibkraft.push(element[4]);
+        });
     });
     console.log(time);
 
