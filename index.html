@@ -8,7 +8,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>
-        var lineCtx = document.getElementById("myGraph").getContext("2d");
         function readData(fileName, separator, callback) {
             $.get(fileName, function (fileContent) {
                 var result = [];
