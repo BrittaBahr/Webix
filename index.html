@@ -23,32 +23,9 @@
         <div id="container"></div>
     </figure>
     <script>
-        function readData(fileName, separator, callback) {
-            $.get(fileName, function (fileContent) {
-                var result = [];
-                var textArray = fileContent.split(/(\r\n|\n|\r)/gm);
-                for (var i = 0; i < textArray.length; i++) {
-                    if (textArray[i].length > 1) {
-                        var elementArray = textArray[i].split(separator);
-                        elementArray.splice(elementArray.length - 1, 1);
-                        result.push(elementArray);
-                    }
-                }
-                callback(result);
-            });
-        }
-        readData("timeSeriesData.csv", ",", function (result) {
-            result.reverse();
-            result.pop();
-            result.reverse();
-            let time = new Array();
-            let normalkraft = new Array();
-            let reibkraft = new Array();
-            result.forEach(element => {
-                time.push(element[1]);
-                normalkraft.push(element[3]);
-                reibkraft.push(element[4]);
-            });
+        Highcharts.getJSON(
+            'data.json',
+            function (data) {
 
                 Highcharts.chart('container', {
                     chart: {
@@ -68,7 +45,7 @@
                         },
                         tickInterval: 0.01,
                         min: 0,
-                        max:1
+                        max: 1
                     },
                     legend: {
                         enabled: false
@@ -104,76 +81,11 @@
                     series: [{
                         type: 'area',
                         name: 'Normalkraft',
-                        data: normalkraft
+                        data: data
                     }]
                 });
             }
         );
-
-        /*readData("timeSeriesData.csv", ",", function (result) {
-            result.reverse();
-            result.pop();
-            result.reverse();
-            let time = new Array();
-            let normalkraft = new Array();
-            let reibkraft = new Array();
-            result.forEach(element => {
-                time.push(element[1]);
-                normalkraft.push(element[3]);
-                reibkraft.push(element[4]);
-            });
-
-            Highcharts.Chart('container', {
-                chart: {
-                    zoomType: 'x'
-                },
-                title: {
-                    text: 'Time Series Example'
-                },
-                xAxis: {
-                    type: 'datetime'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Value'
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    area: {
-                        fillColor: {
-                            linearGradient: {
-                                x1: 0,
-                                y1: 0,
-                                x2: 0,
-                                y2: 1
-                            },
-                            stops: [
-                                [0, Highcharts.getOptions().colors[0]],
-                                [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-                            ]
-                        },
-                        marker: {
-                            radius: 2
-                        },
-                        lineWidth: 1,
-                        states: {
-                            hover: {
-                                lineWidth: 1
-                            }
-                        },
-                        threshold: null
-                    }
-                },
-
-                series: [{
-                    name: "Normalkraft",
-                    data: normalkraft
-                }]
-            });
-        });*/
     </script>
 </body>
 
