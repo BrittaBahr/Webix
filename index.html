@@ -26,7 +26,6 @@
         Highcharts.getJSON(
             'data.json',
             function (data) {
-                console.log(data)
                 Highcharts.chart('container', {
                     chart: {
                         zoomType: 'x'
@@ -80,7 +79,7 @@
                     series: [{
                         type: 'area',
                         name: 'Normal force',
-                        data: data.Normalkraft
+                        data: data[3]
                     }]
                 });
             }
