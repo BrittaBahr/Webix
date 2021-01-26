@@ -27,6 +27,8 @@
             'data.json',
             function (data) {
                 console.log(data[3])
+                var parData = JSON.parse(data);
+                console.log(parData[3])
                 Highcharts.chart('container', {
                     chart: {
                         zoomType: 'x'
