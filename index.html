@@ -10,16 +10,16 @@
     <link href="style.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://code.angularjs.org/1.2.21/angular.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/data.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 </head>
 <body>
     <figure class="highcharts-figure">
         <div id="container"></div>
       </figure>
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/modules/data.js"></script>
+      <script src="https://code.highcharts.com/modules/exporting.js"></script>
+      <script src="https://code.highcharts.com/modules/export-data.js"></script>
+      <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script>
         function readData(fileName, separator, callback) {
             $.get(fileName, function (fileContent) {
@@ -100,75 +100,6 @@
                     turboThreshold: normalkraft.length
                 }]
             });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /*var chart = new Highcharts.Chart({
-                title: {
-                    text: 'Highchart Example Time Series Data'
-                },
-                chart: {
-                    renderTo: 'container',
-                    marginBottom: 80
-                },
-                xAxis: {
-                    categories: time,
-                    labels: {
-                        rotation: 90
-                    }
-                },
-
-                series: [{
-                    name: "Normalkraft",
-                    data: normalkraft,
-                    turboThreshold: null
-                }]
-            });*/
         });
     </script>
 </body>
