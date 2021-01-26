@@ -27,8 +27,10 @@
             'data.json',
             function (data) {
                 var normalforce = new Array();
+                var time = new Array();
                 data.forEach(element => {
                     normalforce.push(parseFloat(element.Normalkraft));
+                    time.push(parseFloat(element.Zeit));
                 });
                 console.log(normalforce);
                 Highcharts.chart('container', {
@@ -39,9 +41,7 @@
                         text: 'Highcharts: Time Series Data Example'
                     },
                     xAxis: {
-                        min: 19.0,
-                        max: 20.0,
-                        tickInterval: 0.01
+                        data: time
                     },
                     yAxis: {
                         title: {
