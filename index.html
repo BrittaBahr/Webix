@@ -15,7 +15,6 @@
 <body>
     <div id="container" style="height: 400px; width: 500px"></div>
 <script>
-    const fileName = 'timeSeriesData.csv'
     function asyncCsv2Array(fileName, separator, callback) {
         // Datei einlesen (benötigt JQuery oder Zepto (bei AppFurnace automatisch enthalten))
         $.get(fileName, function (fileContent) {
@@ -40,7 +39,7 @@
     } // Ende function asyncCsv2Array
 
     // Beispielaufruf    
-    asyncCsv2Array("text.csv", ";", function (result) {
+    asyncCsv2Array("timeSeriesData.csv", ";", function (result) {
         console.log(result);
         // Ausgabe von "Dracula"
         console.log(result[0][0]);
