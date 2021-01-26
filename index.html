@@ -51,18 +51,14 @@
                         zoomType: 'x'
                     },
                     title: {
-                        text: 'USD to EUR exchange rate over time'
-                    },
-                    subtitle: {
-                        text: document.ontouchstart === undefined ?
-                            'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+                        text: 'Time Series Data Example'
                     },
                     xAxis: {
                         type: 'datetime'
                     },
                     yAxis: {
                         title: {
-                            text: 'Exchange rate'
+                            text: 'Values'
                         }
                     },
                     legend: {
@@ -97,7 +93,7 @@
 
                     series: [{
                         type: 'area',
-                        name: 'USD to EUR',
+                        name: 'Normalkraft',
                         data: data
                     }]
                 });
