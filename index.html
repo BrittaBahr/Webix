@@ -17,7 +17,7 @@
         <div id="container"></div>
       </figure>
     <script>
-        function asyncCsv2Array(fileName, separator, callback) {
+        function readData(fileName, separator, callback) {
             // Datei einlesen (benötigt JQuery oder Zepto (bei AppFurnace automatisch enthalten))
             $.get(fileName, function (fileContent) {
                 // Array für Ergebnis
@@ -41,7 +41,7 @@
         }
 
 
-        asyncCsv2Array("timeSeriesData.csv", ",", function (result) {
+        readData("timeSeriesData.csv", ",", function (result) {
             result.reverse();
             result.pop();
             result.reverse();
@@ -53,6 +53,7 @@
                 normalkraft.push(element[3]);
                 reibkraft.push(element[4]);
             });
+            console.log(normalkraft)
             var chart = new Highcharts.Chart('container', {
                 chart: {
                     zoomType: 'x'
