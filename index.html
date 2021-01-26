@@ -1,79 +1,60 @@
 <!DOCTYPE HTML>
 <html>
- <head>
-  <link rel="stylesheet" href="//cdn.webix.com/edge/webix.css" type="text/css"> 
-  <script src="//cdn.webix.com/edge/webix.js" type="text/javascript"></script>  
- </head>
- <body>
-	 <h3>Webix: Time Series Data Example</h3>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>
-        function readData(fileName, separator, callback) {
-            $.get(fileName, function (fileContent) {
-                var result = [];
-                var textArray = fileContent.split(/(\r\n|\n|\r)/gm);
-                for (var i = 0; i < textArray.length; i++) {
-                    if (textArray[i].length > 1) {
-                        var elementArray = textArray[i].split(separator);
-                        elementArray.splice(elementArray.length - 1, 1);
-                        result.push(elementArray);
-                    }
-                }
-                callback(result);
-            });
-        }
-        readData("timeSeriesData.csv", ",", function (result) {
-            result.reverse();
-            result.pop();
-            result.reverse();
-            let time = new Array();
-            let normalkraft = new Array();
-            result.forEach(element => {
-                time.push(parseFloat(element[1]));
-                normalkraft.push(parseFloat(element[3]));
-			});
+
+<head>
+	<link rel="stylesheet" href="//cdn.webix.com/edge/webix.css" type="text/css">
+	<script src="//cdn.webix.com/edge/webix.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<h3>Webix: Time Series Data Example</h3>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>
+		$.getJSON("data.json", function (result) {
 			console.log(result)
+		});
 
+		webix.ui({
+			view: "chart",
+			width: 600,
+			height: 250,
+			type: "line",
 
-webix.ui({
-  view:"chart",
-  width:600,
-  height:250,
-  type:"line",
-  
-  xAxis:{
-    template:"'#year#"
-  },
-  yAxis:{
-    start:19,
-    end: 20
-  },
-  legend:{
-    values:[{text:"Normal force",color:"#1293f8"}],
-    align:"right",
-    valign:"middle",
-    layout:"y",
-    width: 100,
-    margin: 8
-  },
-  series:[
-    {
-      value: normalkraft,
-      item:{
-        borderColor: "#1293f8",
-        color: "#ffffff"
-      },
-      line:{
-        color:"#1293f8",
-        width:0.1
-      },
-      tooltip:{
-        template:"#sales#"
-      }
-    }]
-});
-		})
-   </script>
- </body>
+			xAxis: {
+				template: "'#year#"
+			},
+			yAxis: {
+				start: 19,
+				end: 20
+			},
+			legend: {
+				values: [{ text: "Normal force", color: "#1293f8" }],
+				align: "right",
+				valign: "middle",
+				layout: "y",
+				width: 100,
+				margin: 8
+			},
+			series: [
+				{
+					value: normalkraft,
+					item: {
+						borderColor: "#1293f8",
+						color: "#ffffff"
+					},
+					line: {
+						color: "#1293f8",
+						width: 0.1
+					},
+					tooltip: {
+						template: "#sales#"
+					}
+				}],
+			data: result
+		});
+
+	</script>
+</body>
+
 </html>
