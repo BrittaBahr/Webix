@@ -12,9 +12,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script>
 		$.getJSON("data.json", function (result) {
-			console.log(result)
-		
-
 		webix.ui({
 			view: "chart",
 			width: 600,
@@ -44,7 +41,7 @@
 					line: {
 						color: "#1293f8",
 						width: 0.1,
-						shadow:true
+						shadow:false
 					}
 				}],
 			data: result
