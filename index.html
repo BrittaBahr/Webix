@@ -26,9 +26,7 @@
         Highcharts.getJSON(
             'data.json',
             function (data) {
-                console.log(data[3])
-                var parData = JSON.parse(data);
-                console.log(parData[3])
+                console.log(data[3].Normalkraft)
                 Highcharts.chart('container', {
                     chart: {
                         zoomType: 'x'
