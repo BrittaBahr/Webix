@@ -32,7 +32,6 @@
                     normalforce.push(parseFloat(element.Normalkraft));
                     time.push(parseFloat(element.Zeit));
                 });
-                console.log(normalforce);
                 Highcharts.chart('container', {
                     chart: {
                         zoomType: 'x'
@@ -74,7 +73,7 @@
                     series: [{
                         type: 'area',
                         name: 'Normal force',
-                        data: data
+                        data: normalforce
                     }]
                 });
             }
